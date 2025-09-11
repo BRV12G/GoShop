@@ -8,3 +8,4 @@
 #   Prisma setup
 1. npm i --save-dev prisma --> installing the prisma CLI
 2. npx prisma init
+3. npx prisma migrate dev --name users --> create users mingrations
