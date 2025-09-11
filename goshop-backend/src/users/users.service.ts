@@ -7,16 +7,20 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
-  async createUser(data: CreateUserRequestDto): Promise<User> {
+  async createUser(data: CreateUserRequestDto) {
     try {
       return await this.prismaService.user.create({
         data: {
           ...data,
           password: await bcrypt.hash(data.password, 10),
         },
+        select: {
+          email: true,
+          id: true,
+        },
       });
     } catch (error) {
-         //   console.error('Error creating user:', error);
+      //   console.error('Error creating user:', error);
       if (error.code === 'P2002') {
         throw new UnprocessableEntityException('Email already exists');
       }
