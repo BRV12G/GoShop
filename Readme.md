@@ -5,6 +5,7 @@
 3. npm i --save nestjs-pino pino-http
 4. npm i --save-dev pino-pretty
 5. npm i bcrypt && npm i --save-dev @types/bcrypt
+5.  npm i --save @nestjs/passport passport passport-local @nestjs/jwt passport-jwt --> auth
 
 #   Prisma setup
 1. npm i --save-dev prisma --> installing the prisma CLI
