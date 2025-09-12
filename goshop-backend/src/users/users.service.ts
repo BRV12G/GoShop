@@ -1,7 +1,7 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { CreateUserRequestDto } from './dto/create-user.request.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { User } from '@prisma/client';
+// import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
