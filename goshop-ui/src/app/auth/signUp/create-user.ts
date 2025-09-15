@@ -1,13 +1,11 @@
 // server action
 "use server";
-
-import { API_URL } from "@/app/constants/api";
-import { getErrorMessage } from "@/app/util/errors";
 import { redirect } from "next/navigation";
 import { post } from "@/app/util/fetch";
+import { FormError } from "@/app/common/form-error.interface";
 
 export default async function createUser(
-    _prevState: any,
+    _prevState: FormError,
     formData: FormData
 ) {
    const { error } = await post("users", formData)
