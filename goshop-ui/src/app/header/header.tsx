@@ -18,7 +18,10 @@ import { MouseEvent } from "react";
 import { unauthenticatedRoutes } from "../common/constants/routes";
 import { routes } from "../common/constants/routes";
 
-export default function Header() {
+interface HeaderProps {
+  logout: () => Promise<void>;
+}
+export default function Header({logout}: HeaderProps) {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(
     null
   );
@@ -126,14 +129,14 @@ export default function Header() {
               </Button>
             ))}
           </Box>
-          {isAuthenticated && <Settings />}
+          {isAuthenticated && <Settings logout={logout} />}
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
 
-const Settings = () => {
+const Settings = ({ logout }: HeaderProps) => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(
     null
   );
@@ -169,7 +172,10 @@ const Settings = () => {
         onClose={handleCloseUserMenu}
       >
 
-          <MenuItem key="Logout" onClick={handleCloseUserMenu}>
+          <MenuItem key="Logout" onClick={ async () => {
+            await logout();
+            handleCloseUserMenu();
+          }}>
             <Typography sx={{ textAlign: "center" }}>Logout</Typography>
           </MenuItem>
 
