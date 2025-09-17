@@ -17,7 +17,8 @@ import { useContext, useState } from "react";
 import { MouseEvent } from "react";
 import { unauthenticatedRoutes } from "../common/constants/routes";
 import { routes } from "../common/constants/routes";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 interface HeaderProps {
   logout: () => Promise<void>;
 }
@@ -27,7 +28,7 @@ export default function Header({logout}: HeaderProps) {
   );
 
   const isAuthenticated = useContext(AuthContext);
-
+  const router = useRouter();
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -48,8 +49,8 @@ export default function Header({logout}: HeaderProps) {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -91,7 +92,10 @@ export default function Header({logout}: HeaderProps) {
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                <MenuItem key={page.title} onClick={() => {
+                  handleCloseNavMenu();
+                  router.push(page.path);
+                }}>
                   <Typography sx={{ textAlign: "center" }}>{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -122,7 +126,10 @@ export default function Header({logout}: HeaderProps) {
             {pages.map((page) => (
               <Button
                 key={page.title}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  router.push(page.path);
+                  handleCloseNavMenu();
+                }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page.title}
