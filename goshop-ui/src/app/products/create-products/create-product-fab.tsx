@@ -2,8 +2,8 @@
 
 import { Fab } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import CreateProductsModal from "./create-products-modal";
 import { useState } from "react";
+import CreateProductsModal from "./create-products-modal";
 
 export default function CreateProductFab() {
     const [modalVisible, setModalVisible] = useState(false);

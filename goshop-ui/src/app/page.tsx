@@ -1,8 +1,13 @@
 import getMe from "./get-me";
-import CreateProductFab from "./products/create-product-fab";
+import getProducts from "./products/actions/get-products";
+import CreateProductFab from "./products/create-products/create-product-fab";
 
 export default async function Home() {
+  const products = await getProducts();
+  const user = await getMe();
+  console.log("user", user);
+  console.log("products", products);
   return (
-    <CreateProductFab></CreateProductFab>
+    <CreateProductFab />
   )
 }
