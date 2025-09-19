@@ -1,10 +1,10 @@
 "use client";
 
 import { Box, Modal } from "@mui/material";
-import { Button, Link, Stack, TextField } from "@mui/material";
-import NextLink from "next/link";
+import { Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import { FormResponse } from "../common/interfaces/form-response.interface";
+import createProduct from "./create-product";
 
 const styles = {
   position: "absolute",
@@ -29,10 +29,20 @@ export default function CreateProductsModal({
   handleClose,
 }: CreateProducstModalProps) {
     const [response, setResponse] = useState<FormResponse>();
+    const onClose = () => {
+        setResponse(undefined);
+        handleClose();
+    }
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open} onClose={onClose}>
       <Box sx={styles}>
-        <form className="w-full max-w-xs">
+        <form className="w-full max-w-xs" action={async (formData) => {
+            const response = await createProduct(formData);
+            setResponse(response);
+            if (!response.error) {
+                onClose();
+            }
+        }}>
           <Stack spacing={2}>
             <TextField
               name="name"
