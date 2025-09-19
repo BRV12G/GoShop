@@ -12,5 +12,9 @@ export class ProductsService {
         userId,
       },
     });
-}
+  }
+
+  async getProducts() {
+    return this.prismaService.products.findMany();
+  }
 }
