@@ -9,6 +9,8 @@
 6. npm install --save @nestjs/jwt passport-jwt
 7. npm i --save ms
 8. npm i --save cookie-parser
+9.  npm i --save @nestjs/serve-static
+10. npm i --save-dev @types/multer
 
 #   Prisma setup
 1. npm i --save-dev prisma --> installing the prisma CLI
