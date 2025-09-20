@@ -50,15 +50,20 @@ export class ProductsController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 500000 }),
-          new FileTypeValidator({ fileType: 'image/jpeg' }),
+          new MaxFileSizeValidator({ maxSize: 50_000_000 }),
+          new FileTypeValidator({ fileType: /(jpeg|jpg|png)$/ }),
         ],
       }),
     )
     _file: Express.Multer.File,
     @CurrentUser() user: TokenPayload,
-  ) {}
-
+  ) {
+    return {
+      message: 'Image uploaded successfully',
+      filename: _file.filename,
+      uploadedBy: user.userId,
+    };
+  }
 
   @Get()
   @UseGuards(JwtAuthGuard)
