@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { Container, CssBaseline, ThemeProvider } from "@mui/material";
-import darkTheme from "./dark.theme";
+import { Container, CssBaseline } from "@mui/material";
 import Header from "./header/header";
 import Providers from "./providers";
 import authenticated from "./auth/authenticated";
