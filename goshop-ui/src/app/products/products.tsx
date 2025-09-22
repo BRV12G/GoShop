@@ -7,7 +7,7 @@ export default async function Products() {
   //   console.log("user", user);
     console.log("products", products);
   return (
-    <Grid container spacing={3} alignItems="stretch" sx={{ height: "850vh", overflow: "scroll" }}>
+    <Grid container spacing={3} alignItems="stretch" sx={{ height: "85vh", overflow: "scroll" }}>
         {products.map(product => (
             <Grid  key={product.id} size={{ xs: 12, sm: 6, lg:4 }}  >
                 <Product product={product}/>
