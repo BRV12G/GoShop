@@ -25,6 +25,15 @@ export class ProductsService {
     );
   }
 
+  async getProduct(productId: number) {
+    return {
+      ...(await this.prismaService.products.findUniqueOrThrow({
+        where: { id: productId },
+      })),
+      imageExists: await this.imageExists(productId),
+    };
+  }
+
   private async imageExists(productId: number) {
     try {
       await fs.access(
