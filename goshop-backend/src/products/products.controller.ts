@@ -19,6 +19,7 @@ import type { TokenPayload } from '../auth/token-payload.interface';
 import { ProductsService } from './products.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { extname } from 'path';
+import { PRODUCT_IMAGES } from './product-images';
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
@@ -37,7 +38,7 @@ export class ProductsController {
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
-        destination: 'public/products',
+        destination: PRODUCT_IMAGES,
         filename: (req, file, callback) => {
           callback(
             null,
