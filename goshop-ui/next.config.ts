@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '50mb', // match your NestJS MaxFileSizeValidator
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "localhost",
+      }
+    ]
+  }
 };
 
 export default nextConfig;
