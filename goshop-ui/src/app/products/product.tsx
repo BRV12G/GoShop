@@ -3,6 +3,7 @@ import { Stack, Typography } from "@mui/material";
 import { Product as IProduct } from "./interfaces/product.interface";
 import Image from "next/image";
 import { API_URL } from "../common/constants/api";
+import { getProductImage } from "./product-image";
 
 interface ProductProps {
   product: IProduct;
@@ -14,7 +15,7 @@ export default function Product({ product }: ProductProps) {
             <Typography variant="h4">{product.name}</Typography>
       {product.imageExists && (
         <Image
-          src={`${API_URL}/images/products/${product.id}.jpg`}
+          src={getProductImage(product.id)}
           alt={product.name}
           width="0"
           height="0"
